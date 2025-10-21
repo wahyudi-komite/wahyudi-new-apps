@@ -5,7 +5,7 @@ import { AppModule } from './app.module';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  const port = parseInt(process.env.DATABASE_PORT ?? '3010', 10);
+  const port = parseInt(process.env.APPS_PORT ?? '3010', 10);
   app.setGlobalPrefix('api-new-apps/v1/');
   app.useGlobalPipes(new ValidationPipe());
   app.use(cookieParser());
@@ -14,8 +14,8 @@ async function bootstrap() {
     credentials: true,
   });
 
-  await app.listen(port, '0.0.0.0');
+  await app.listen(port);
   console.log(process.env.DATABASE_HOST);
   console.log(port);
 }
-bootstrap();
+void bootstrap();
